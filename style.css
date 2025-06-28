@@ -5,7 +5,12 @@ body{
     /* Arial, Helvetica,, sans-serif */
     color: lightgray;
 }
-
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
 html{
     scroll-behavior: smooth;
 }
@@ -278,6 +283,8 @@ header ul a:hover{
     margin-top: 30px;
 }
 
+
+
 .card{
     display: flex;
     align-items:flex-start;
@@ -413,12 +420,14 @@ header ul a:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50%;
     mix-blend-mode:exclusion;
     position: relative;
     cursor: pointer;
     transition: 0.5s;
     min-width: 400px;
+    margin-left: 0;
+    width: 100%;
+    max-width: 400px;
 
 }
 
@@ -516,6 +525,13 @@ header ul a:hover{
   }
 }
 
+@media (max-width: 768px) {
+  .project-info,
+  .project-vidbox {
+    margin-left: 0;
+    width: 100%;
+  }
+}
 
 
 
