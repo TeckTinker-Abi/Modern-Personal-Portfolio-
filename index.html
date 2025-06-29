@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Abishek Protfolio</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -837,16 +836,33 @@
       scrollToIndex(id, currentIndex);
     }
 
-    window.addEventListener('load', () => {
-      scrollToIndex('merged-carousel', currentIndex);
-    });
+    //window.addEventListener('load', () => {
+    //  scrollToIndex('merged-carousel', currentIndex);
+    //});
 
     window.addEventListener('resize', () => {
       scrollToIndex('merged-carousel', currentIndex);
     });
 
     setInterval(() => nextSlide('merged-carousel'), 5000);
-  </script>
+
+    window.addEventListener('load', () => {
+          const imgs = document.querySelectorAll('.carousel-item img');
+          let loaded = 0;
+          imgs.forEach(img => {
+            if (img.complete) loaded++;
+            else img.onload = () => {
+              loaded++;
+              if (loaded === imgs.length) scrollToIndex('merged-carousel', currentIndex);
+            };
+          });
+
+          if (loaded === imgs.length) scrollToIndex('merged-carousel', currentIndex);
+        });
+
+
+        setInterval(() => nextSlide('merged-carousel'), 5000);
+      </script>
 
   
 
