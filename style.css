@@ -1785,7 +1785,7 @@ header ul a:hover{
 
     @media (max-width: 600px) {
     .carousel-item {
-        width: 90vw;
+        width: 80vw;
         height: 20%;
     }
 
