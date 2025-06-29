@@ -1707,7 +1707,7 @@ header ul a:hover{
     }
 
     .carousel-item {
-      width: 350px;
+      width: 200px;
       height: auto;
       flex-shrink: 0;
       background: rgba(255, 255, 255, 0.04);
