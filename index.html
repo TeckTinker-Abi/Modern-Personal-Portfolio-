@@ -782,7 +782,7 @@
     </script>
 
     <!-- Certificate Section  -->
-     <script>
+     <!-- <script>
     let currentIndex = 0;
 
     function updateCenteredItem(carousel) {
@@ -862,9 +862,112 @@
 
 
         setInterval(() => nextSlide('merged-carousel'), 5000);
-      </script>
+      </script> -->
+    <script>
+    let currentIndex = 0;
+    let autoScroll;
 
-  
+    function updateCenteredItem(carousel) {
+      const items = carousel.querySelectorAll('.carousel-item');
+      const centerX = carousel.offsetWidth / 2 + carousel.getBoundingClientRect().left;
+      let closest = null;
+      let closestDistance = Infinity;
+
+      items.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        const itemCenter = rect.left + rect.width / 2;
+        const distance = Math.abs(itemCenter - centerX);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closest = item;
+        }
+      });
+
+      items.forEach(item => item.classList.remove('centered'));
+      if (closest) closest.classList.add('centered');
+    }
+
+    function scrollToIndex(id, index) {
+      const carousel = document.getElementById(id);
+      const track = carousel.querySelector('.carousel-track');
+      const items = carousel.querySelectorAll('.carousel-item');
+      const itemWidth = items[0].offsetWidth + 20;
+      const offset = (carousel.offsetWidth - items[0].offsetWidth) / 2;
+
+      track.style.transform = `translateX(${-index * itemWidth + offset}px)`;
+
+      track.addEventListener('transitionend', function handler() {
+        updateCenteredItem(carousel);
+        track.removeEventListener('transitionend', handler);
+      });
+    }
+
+    function nextSlide(id) {
+      const carousel = document.getElementById(id);
+      const items = carousel.querySelectorAll('.carousel-item');
+      currentIndex = (currentIndex + 1) % items.length;
+      scrollToIndex(id, currentIndex);
+    }
+
+    function prevSlide(id) {
+      const carousel = document.getElementById(id);
+      const items = carousel.querySelectorAll('.carousel-item');
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      scrollToIndex(id, currentIndex);
+    }
+
+    // Touch swipe handling
+    let startX = 0;
+    let endX = 0;
+    const swipeThreshold = 50;
+
+    function handleTouchStart(e) {
+      startX = e.touches[0].clientX;
+    }
+
+    function handleTouchMove(e) {
+      endX = e.touches[0].clientX;
+    }
+
+    function handleTouchEnd(e) {
+      const distance = endX - startX;
+      if (Math.abs(distance) > swipeThreshold) {
+        if (distance < 0) {
+          nextSlide('merged-carousel');
+        } else {
+          prevSlide('merged-carousel');
+        }
+        clearInterval(autoScroll); // stop auto-scroll on swipe
+      }
+    }
+
+    window.addEventListener('load', () => {
+      const carousel = document.getElementById('merged-carousel');
+      const imgs = document.querySelectorAll('.carousel-item img');
+      let loaded = 0;
+
+      imgs.forEach(img => {
+        if (img.complete) loaded++;
+        else img.onload = () => {
+          loaded++;
+          if (loaded === imgs.length) scrollToIndex('merged-carousel', currentIndex);
+        };
+      });
+
+      if (loaded === imgs.length) scrollToIndex('merged-carousel', currentIndex);
+
+      carousel.addEventListener('touchstart', handleTouchStart, { passive: true });
+      carousel.addEventListener('touchmove', handleTouchMove, { passive: true });
+      carousel.addEventListener('touchend', handleTouchEnd);
+
+      autoScroll = setInterval(() => nextSlide('merged-carousel'), 5000);
+    });
+
+    window.addEventListener('resize', () => {
+      scrollToIndex('merged-carousel', currentIndex);
+    });
+  </script>
 
 
 
