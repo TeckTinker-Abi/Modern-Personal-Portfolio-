@@ -1675,7 +1675,7 @@ header ul a:hover{
 
     section.certificates {
     max-width: 1000px;
-
+    width: 100%;
     height: 200%;
     padding: 10px;
     margin: 0 auto;
