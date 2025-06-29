@@ -10,6 +10,7 @@ body {
   overflow-x: hidden;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  overflow-y: auto;
 }
 html{
     scroll-behavior: smooth;
@@ -1778,7 +1779,7 @@ header ul a:hover{
       }
     } */
 
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
     .carousel-item {
         width: 90vw;
         height: auto;
