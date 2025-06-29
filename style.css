@@ -1707,7 +1707,7 @@ header ul a:hover{
     }
 
     .carousel-item {
-      /* width: 60px; */
+      width: 60px;
       height: auto;
       flex-shrink: 0;
       background: rgba(255, 255, 255, 0.04);
@@ -1726,7 +1726,7 @@ header ul a:hover{
       backdrop-filter: blur(4px);
       text-decoration: none;
       padding: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 50px;
       margin-top: 50px;
     }
 
