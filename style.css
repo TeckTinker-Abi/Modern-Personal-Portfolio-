@@ -6,7 +6,7 @@ body{
     color: lightgray;
 }
 body {
-  max-width: 110%;
+  max-width: 90%;
   overflow-x: hidden;
   box-sizing: border-box;
   scroll-behavior: smooth;
