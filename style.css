@@ -6,7 +6,7 @@ body{
     color: lightgray;
 }
 body {
-  max-width: 100%;
+  max-width: 110%;
   overflow-x: hidden;
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -1726,7 +1726,7 @@ header ul a:hover{
       backdrop-filter: blur(4px);
       text-decoration: none;
       padding: 10px;
-      margin-bottom: 50px;
+      margin-bottom: 20px;
       margin-top: 50px;
     }
 
